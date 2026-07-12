@@ -106,6 +106,7 @@ def run_feature_pipeline():
             price REAL,
             item_avg_rating REAL,
             item_interaction_count INTEGER
+            description TEXT       
         )
     """)
 
@@ -130,7 +131,7 @@ def run_feature_pipeline():
     
     products_sql_payload = transformed_products[[
         "product_id", "product_name", "category", "brand", 
-        "price", "item_avg_rating", "item_interaction_count"
+        "price", "item_avg_rating", "item_interaction_count", "description"
     ]]
     
     interactions_sql_payload = reviews_df[[
