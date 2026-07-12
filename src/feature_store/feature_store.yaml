@@ -1,0 +1,8 @@
+project: recomart_pipeline
+registry: ../../data/warehouse/registry.db
+provider: local
+offline_store:
+  type: file
+online_store:
+  type: sqlite
+  path: ../../data/warehouse/online_store.db

@@ -1,0 +1,105 @@
+{
+  "execution_timestamp": "2026-07-12T15:49:15.229638+00:00",
+  "datasets_profiled": {
+    "clickstream": {
+      "schema_check_passed": true,
+      "schema_errors": [],
+      "total_records": 122114,
+      "duplicate_records": 0,
+      "null_value_distributions": {
+        "event_id": 0,
+        "session_id": 0,
+        "user_id": 0,
+        "product_id": 0,
+        "event_timestamp": 0,
+        "event_type": 0,
+        "page": 0,
+        "device": 0,
+        "browser": 0,
+        "traffic_source": 0,
+        "dwell_time_sec": 0,
+        "recommendation_flag": 0
+      },
+      "validation_issues_found": [],
+      "is_valid": true
+    },
+    "products": {
+      "schema_check_passed": true,
+      "schema_errors": [],
+      "total_records": 728,
+      "duplicate_records": 0,
+      "null_value_distributions": {
+        "product_id": 0,
+        "product_name": 0,
+        "category": 13,
+        "brand": 0,
+        "price": 21,
+        "avg_rating": 9,
+        "rating_count": 9,
+        "availability": 13,
+        "bestseller_rank": 188,
+        "description": 0
+      },
+      "validation_issues_found": [],
+      "is_valid": true
+    },
+    "reviews": {
+      "schema_check_passed": true,
+      "schema_errors": [],
+      "total_records": 6327,
+      "duplicate_records": 0,
+      "null_value_distributions": {
+        "review_id": 0,
+        "user_id": 0,
+        "product_id": 0,
+        "rating": 7,
+        "review_text": 39,
+        "sentiment": 0,
+        "verified_purchase": 0,
+        "review_date": 31
+      },
+      "validation_issues_found": [],
+      "is_valid": true
+    },
+    "sessions": {
+      "schema_check_passed": true,
+      "schema_errors": [],
+      "total_records": 15000,
+      "duplicate_records": 0,
+      "null_value_distributions": {
+        "session_id": 0,
+        "user_id": 0,
+        "session_start": 0,
+        "session_end": 0,
+        "device": 0,
+        "browser": 0,
+        "traffic_source": 0,
+        "session_duration_sec": 0,
+        "pages_visited": 0,
+        "bounce": 0,
+        "conversion": 0
+      },
+      "validation_issues_found": [],
+      "is_valid": true
+    },
+    "users": {
+      "schema_check_passed": true,
+      "schema_errors": [],
+      "total_records": 3000,
+      "duplicate_records": 0,
+      "null_value_distributions": {
+        "user_id": 0,
+        "age": 0,
+        "gender": 0,
+        "city": 0,
+        "membership": 0,
+        "preferred_category": 0,
+        "signup_date": 0,
+        "customer_segment": 0,
+        "is_active": 0
+      },
+      "validation_issues_found": [],
+      "is_valid": true
+    }
+  }
+}

@@ -1,0 +1,23 @@
+datasets:
+  users:
+    path: data/source/users.csv
+  products:
+    path: data/source/products.csv
+  reviews:
+    path: data/source/reviews.csv
+  sessions:
+    path: data/source/sessions.csv
+  clickstream:
+    path: data/source/clickstream.csv
+
+external_api:
+  url: https://dummyjson.com/products
+
+raw_storage:
+  root: data/raw/
+
+external_storage:
+  root: data/external/  
+
+logs:
+  file: logs/ingestion.log
