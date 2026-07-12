@@ -1,4 +1,4 @@
-# Recomart End-to-End Recommendation Data Pipeline & Warehouse (Tasks 2–10)
+# Recomart End-to-End Recommendation Data Pipeline & Warehouse 
 
 ## 🎯 Project Overview
 This repository contains a modular, configuration-driven, and enterprise-grade recommendation system data pipeline built completely around the **Single Responsibility Principle (SRP)**. 
