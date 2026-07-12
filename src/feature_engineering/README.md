@@ -18,7 +18,7 @@ The pipeline automatically compiles a Star Schema within an indexed SQLite datab
 ## 🚀 Execution & Verification
 To run feature generation algorithms and compile the warehouse database:
 ```bash
-python src/features/feature_runner.py
+python src/feature_engineering/feature_runner.py
 ```
 
 ### Generated Deliverables

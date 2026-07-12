@@ -1,4 +1,3 @@
-# src/feature_store/materialize.py
 import sys
 import json
 import sqlite3
@@ -11,7 +10,7 @@ if src_dir not in sys.path:
     sys.path.insert(0, src_dir)
 
 from common.logger import logger
-from feature_store.feature_views import user_features_view, product_features_view
+from feature_registry.feature_views import user_features_view, product_features_view
 
 class RecomartFeatureStore:
     """A high-performance custom Feature Store managing schema metadata and online caching."""

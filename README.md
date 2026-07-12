@@ -35,8 +35,8 @@ recomart-data-pipeline/
 │   ├── ingestion/              # Ingestors (CSV/API) and file system staging managers
 │   ├── validation/             # Automated constraints testing and PDF generation engines
 │   ├── preparation/            # Deduplication, median imputation, and numeric scalers
-│   ├── features/               # Analytical grouping matrices and SQL layer builders
-│   ├── feature_store/          # Custom real-time Online Serving Feature Cache compiler
+│   ├── feature_engineering/               # Analytical grouping matrices and SQL layer builders
+│   ├── feature_registry/          # Custom real-time Online Serving Feature Cache compiler
 │   ├── models/                 # Popularity baselines, text NLP TF-IDF recommenders, & MLflow
 │   └── orchestration/          # Task 10: Prefect master workflow control DAG
 │
@@ -50,29 +50,52 @@ recomart-data-pipeline/
 ## 🏗️ Comprehensive Pipeline Architecture
 
 ```text
-                      [Prefect Workflows DAG]
-                    (Pipeline Automation Node)
-                                 │
-                                 ▼
-                     CSV File + REST Endpoints
-                                 │
-                                 ▼
-                      [Task 2 & 3: Ingestion] ➔ Raw Data Lake Staging
-                                 │
-                                 ▼
-                      [Task 4: Validation Gate] ➔ Data Quality PDF
-                                 │
-                                 ▼
-                      [Task 5: Data Preparation] ➔ Encoded/Normalized Data
-                                 │
-                                 ▼
-                      [Task 6: Feature Pipeline] ➔ SQLite Database
-                                 │
-                                 ▼
-                      [Task 7: Feature Store] ➔ Online KV Serving Cache
-                                 │
-                                 ▼
-                      [Task 9: Model Training] ➔ MLflow Workspace Tracks
+                        Prefect Flow
+                (Workflow Orchestration)
+                             │
+                             ▼
+
+                        CSV + REST API
+
+                        ↓
+
+                        Ingestion
+
+                        ↓
+
+                        Raw
+
+                        ↓
+
+                        Validation
+
+                        ↓
+
+                        Preparation
+
+                        ↓
+
+                        Feature Engineering
+
+                        ↓
+
+                        SQLite Warehouse
+
+                        ↓
+
+                        Feature Store
+
+                        ↓
+
+                        Recommendation Models
+
+                        ↓
+
+                        Evaluation
+
+                        ↓
+
+                        MLflow
 ```
 
 ---

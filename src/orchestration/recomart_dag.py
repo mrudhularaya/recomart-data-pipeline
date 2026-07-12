@@ -4,6 +4,13 @@ import time
 from pathlib import Path
 from datetime import datetime, timezone
 
+# Dynamic path resolution to keep imports clean
+src_dir = str(Path(__file__).resolve().parent.parent)
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
+from models.trainer import RecommendationPipelineTrainer
+
 from prefect import flow, task
 
 # Resolve absolute search paths to target your project modules safely
@@ -15,9 +22,8 @@ from common.logger import logger
 from ingestion.run_ingestion import main as run_ingestion_func
 from validation.validation_runner import run_validation_pipeline as run_validation_func
 from preparation.preparation_runner import run_preparation_pipeline as run_preparation_func
-from features.feature_runner import run_feature_pipeline as run_features_func
-from models.train_eval import RecomartModelSuite
-
+from feature_engineering.feature_runner import run_feature_pipeline as run_features_func
+from models.trainer import RecommendationPipelineTrainer
 # --- DEFINE ISOLATED PREFECT TASKS ---
 # Each decorator creates an trackable execution node matching an Airflow Operator
 
@@ -44,8 +50,9 @@ def feature_task_node():
 @task(name="Recommendation Model Training & MLflow Tracking")
 def train_task_node():
     logger.info("[Prefect Task] Running popularity baselines and TF-IDF similarity matrix...")
-    suite = RecomartModelSuite()
-    suite.run_training_lifecycle(top_k=5)
+    # Instantiate the updated split trainer module class name
+    trainer = RecommendationPipelineTrainer()
+    trainer.train_and_track_all(top_k=5)
 
 
 # --- THE MASTER CONTROL FLOW GRAPH ---

@@ -105,3 +105,55 @@
 {"timestamp": "2026-07-12T16:44:38.911268+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Training Content-Based TF-IDF Similarity engine...", "pipeline_step": "TRAIN_CONTENT"}
 {"timestamp": "2026-07-12T16:44:41.248440+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Model training suite and MLflow tracking complete.", "pipeline_step": "TRAIN_COMPLETE"}
 {"timestamp": "2026-07-12T16:44:41.345901+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Verification step complete: Core engine successfully outputs recommendations."}
+{"timestamp": "2026-07-12T17:43:33.118623+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Prefect orchestration flow initializing sequential steps...", "pipeline_step": "DAG_START"}
+{"timestamp": "2026-07-12T17:43:33.485974+00:00", "level": "INFO", "logger": "data_ingestion", "message": "[Prefect Task] Running Data Ingestion sub-routine..."}
+{"timestamp": "2026-07-12T17:43:33.489021+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Conductor initializing with metrics tracking...", "pipeline_step": "START"}
+{"timestamp": "2026-07-12T17:43:33.494670+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Reading CSV file into memory: users.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-12T17:43:33.662394+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Saved 3,000 rows to data\\raw\\users\\2026-07-12\\users.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-12T17:43:33.674902+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Reading CSV file into memory: products.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-12T17:43:33.707543+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Saved 728 rows to data\\raw\\products\\2026-07-12\\products.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-12T17:43:33.709883+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Reading CSV file into memory: reviews.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-12T17:43:33.790258+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Saved 6,327 rows to data\\raw\\reviews\\2026-07-12\\reviews.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-12T17:43:33.792984+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Reading CSV file into memory: sessions.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-12T17:43:33.881494+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Saved 15,000 rows to data\\raw\\sessions\\2026-07-12\\sessions.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-12T17:43:33.881494+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Reading CSV file into memory: clickstream.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-12T17:43:34.583445+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Saved 122,114 rows to data\\raw\\clickstream\\2026-07-12\\clickstream.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-12T17:43:34.603255+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Initiating HTTP GET request to endpoint: https://dummyjson.com/products", "pipeline_step": "API_EXTRACT"}
+{"timestamp": "2026-07-12T17:43:34.990362+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Saved JSON payload response out to data\\external\\products_api\\2026-07-12\\products_api.json", "pipeline_step": "EXTERNAL_SAVE"}
+{"timestamp": "2026-07-12T17:43:34.996900+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Ingestion cycle complete.", "pipeline_step": "COMPLETE"}
+{"timestamp": "2026-07-12T17:43:35.016295+00:00", "level": "INFO", "logger": "data_ingestion", "message": "[Prefect Task] Running Data Validation checks & compiling PDF..."}
+{"timestamp": "2026-07-12T17:43:35.022521+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Initializing Data Validation engine...", "pipeline_step": "VALIDATE_START"}
+{"timestamp": "2026-07-12T17:43:35.022521+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Profiling raw landing zone data for: [clickstream]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-12T17:43:35.761144+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Successfully staged validated copy to data/validated/clickstream/"}
+{"timestamp": "2026-07-12T17:43:35.761144+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Profiling raw landing zone data for: [products]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-12T17:43:35.851316+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Successfully staged validated copy to data/validated/products/"}
+{"timestamp": "2026-07-12T17:43:35.851316+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Profiling raw landing zone data for: [reviews]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-12T17:43:35.942030+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Successfully staged validated copy to data/validated/reviews/"}
+{"timestamp": "2026-07-12T17:43:35.942030+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Profiling raw landing zone data for: [sessions]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-12T17:43:36.065105+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Successfully staged validated copy to data/validated/sessions/"}
+{"timestamp": "2026-07-12T17:43:36.067120+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Profiling raw landing zone data for: [users]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-12T17:43:36.149218+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Successfully staged validated copy to data/validated/users/"}
+{"timestamp": "2026-07-12T17:43:36.155418+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Data Quality Report successfully written to: reports/validation_report.json", "pipeline_step": "VALIDATE_END"}
+{"timestamp": "2026-07-12T17:43:36.166300+00:00", "level": "INFO", "logger": "data_ingestion", "message": "[Prefect Task] Running Data Cleansing & Normalization scaling..."}
+{"timestamp": "2026-07-12T17:43:36.167894+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Initializing Data Preparation engine...", "pipeline_step": "PREPARE_START"}
+{"timestamp": "2026-07-12T17:43:36.168207+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Preparing 'users' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-12T17:43:36.243275+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Staged cleaned and prepared users table (3000 rows)."}
+{"timestamp": "2026-07-12T17:43:36.243275+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Preparing 'products' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-12T17:43:36.297942+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Staged cleaned and prepared products table (728 rows)."}
+{"timestamp": "2026-07-12T17:43:36.297942+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Preparing 'reviews' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-12T17:43:36.400005+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Staged cleaned and prepared reviews table (6327 rows)."}
+{"timestamp": "2026-07-12T17:43:36.400005+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Preparing 'sessions' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-12T17:43:36.516357+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Staged cleaned and prepared sessions table (15000 rows)."}
+{"timestamp": "2026-07-12T17:43:36.532097+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Data Preparation processing routines executed completely.", "pipeline_step": "PREPARE_END"}
+{"timestamp": "2026-07-12T17:43:36.549113+00:00", "level": "INFO", "logger": "data_ingestion", "message": "[Prefect Task] Calculating recommendation metrics & writing to SQLite..."}
+{"timestamp": "2026-07-12T17:43:36.549113+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Initializing Feature Engineering & Database Transformation engine...", "pipeline_step": "FEATURE_START"}
+{"timestamp": "2026-07-12T17:43:36.698739+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Calculating aggregate interaction and rating metrics...", "pipeline_step": "FEATURE_ENG"}
+{"timestamp": "2026-07-12T17:43:36.756162+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Opening relational database execution connection at: data/warehouse/recomart_warehouse.db", "pipeline_step": "DB_LOAD"}
+{"timestamp": "2026-07-12T17:43:36.956818+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Feature engineering transformation and relational database loading cycles completed.", "pipeline_step": "FEATURE_END"}
+{"timestamp": "2026-07-12T17:43:36.998600+00:00", "level": "INFO", "logger": "data_ingestion", "message": "[Prefect Task] Running popularity baselines and TF-IDF similarity matrix..."}
+{"timestamp": "2026-07-12T17:43:37.018466+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Initializing Task 9 Decoupled Model Training pipeline...", "pipeline_step": "TRAIN_START"}
+{"timestamp": "2026-07-12T17:43:44.967004+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Training Popularity Baseline model variant...", "pipeline_step": "TRAIN_POPULARITY"}
+{"timestamp": "2026-07-12T17:43:46.586344+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Popularity Baseline Metrics logged -> Precision: 0.0056, Recall: 0.0114"}
+{"timestamp": "2026-07-12T17:43:46.628952+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Training Content-Based TF-IDF Similarity engine...", "pipeline_step": "TRAIN_CONTENT"}
+{"timestamp": "2026-07-12T17:43:50.762484+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Model training suite and MLflow tracking complete.", "pipeline_step": "TRAIN_COMPLETE"}
+{"timestamp": "2026-07-12T17:43:50.762484+00:00", "level": "INFO", "logger": "data_ingestion", "message": "Prefect orchestration flow execution completed smoothly.", "pipeline_step": "DAG_SUCCESS"}

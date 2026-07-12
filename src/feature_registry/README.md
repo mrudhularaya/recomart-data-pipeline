@@ -38,7 +38,7 @@ The catalog generates an audit trail listing our active definitions:
 
 Execute the materialization synchronization routine directly from your project root folder path:
 ```bash
-python src/feature_store/materialize.py
+python src/feature_registry/materialize.py
 ```
 
 ### Expected Deliverable Output Targets
