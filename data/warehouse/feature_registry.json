@@ -1,7 +1,12 @@
 {
   "feature_store_project": "recomart_pipeline",
-  "metadata_version": "1.0.0",
-  "last_materialization_timestamp": "2026-07-12T16:18:49.518557+00:00",
+  "metadata_version": "2.0.0",
+  "last_materialization_timestamp": "2026-07-18T15:23:17.534781+00:00",
+  "latest_feature_version": "20260718T152317Z",
+  "retrieval": {
+    "training": "retrieve_features(view_name, entity_id, feature_version=<version>)",
+    "inference": "retrieve_features(view_name, entity_id) returns the latest materialization"
+  },
   "registry": {
     "user_features": {
       "description": "Algorithmic user profiles capturing activity frequencies and average scoring behaviors.",

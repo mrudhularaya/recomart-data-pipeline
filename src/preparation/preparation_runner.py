@@ -74,7 +74,10 @@ def run_preparation_pipeline():
         
         # Fill Missing values
         products_df["price"] = products_df["price"].fillna(products_df["price"].median())
-        products_df["avg_rating"] = products_df["avg_rating"].fillna(0.0)
+        products_df["avg_rating"] = pd.to_numeric(
+            products_df["avg_rating"].astype("string").str.extract(r"([-+]?\d*\.?\d+)", expand=False),
+            errors="coerce",
+        ).fillna(0.0)
         
         # Categorical Encoding
         products_df["category_encoded"] = products_df["category"].astype("category").cat.codes
@@ -139,6 +142,20 @@ def run_preparation_pipeline():
         out_dir.mkdir(exist_ok=True)
         sessions_df.to_csv(out_dir / "sessions.csv", index=False)
         logger.info(f"Staged cleaned and prepared sessions table ({len(sessions_df)} rows).")
+
+    clickstream_path = validated_dir / "clickstream" / "clickstream.csv"
+    if clickstream_path.exists():
+        logger.info("Preparing 'clickstream' dataset...", extra={"pipeline_step": "PREPARE_LOOP"})
+        clickstream_df = pd.read_csv(clickstream_path).drop_duplicates(subset=["event_id"], keep="first")
+        clickstream_df = clickstream_df.dropna(subset=["session_id", "user_id", "product_id"])
+        clickstream_df["event_timestamp"] = pd.to_datetime(clickstream_df["event_timestamp"], errors="coerce")
+        clickstream_df["event_hour"] = clickstream_df["event_timestamp"].dt.hour.fillna(-1).astype(int)
+        clickstream_df["dwell_time_sec"] = clickstream_df["dwell_time_sec"].fillna(0).clip(lower=0)
+        clickstream_df["event_type_encoded"] = clickstream_df["event_type"].astype("category").cat.codes
+        out_dir = processed_dir / "clickstream"
+        out_dir.mkdir(exist_ok=True)
+        clickstream_df.to_csv(out_dir / "clickstream.csv", index=False)
+        logger.info(f"Staged cleaned and prepared clickstream table ({len(clickstream_df)} rows).")
 
     logger.info("Data Preparation processing routines executed completely.", extra={"pipeline_step": "PREPARE_END"})
 

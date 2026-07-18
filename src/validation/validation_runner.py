@@ -12,6 +12,7 @@ if src_dir not in sys.path:
 from common.logger import logger
 from validation.schema_validator import SchemaValidator
 from validation.quality_validator import QualityValidator
+from validation.report_generator import generate_validation_pdf
 
 def run_validation_pipeline():
     logger.info("Initializing Data Validation engine...", extra={"pipeline_step": "VALIDATE_START"})
@@ -69,21 +70,27 @@ def run_validation_pipeline():
         }
 
         # Route directly to data/validated/ without performing cleaning operations
-        if schema_passed:
+        if schema_passed and quality_metrics["is_valid"]:
             output_path_dir = validated_dir / dataset_name
             output_path_dir.mkdir(parents=True, exist_ok=True)
             
             df.to_csv(output_path_dir / f"{dataset_name}.csv", index=False)
             logger.info(f"Successfully staged validated copy to data/validated/{dataset_name}/")
         else:
-            logger.error(f"Dataset [{dataset_name}] failed schema checks: {schema_errors}")
+            logger.error(
+                f"Dataset [{dataset_name}] failed validation: "
+                f"schema_errors={schema_errors}; quality_issues={quality_metrics['validation_issues_found']}"
+            )
 
     # Output Quality Report Deliverable
     report_file_path = reports_dir / "validation_report.json"
     with open(report_file_path, "w", encoding="utf-8") as f:
         json.dump(quality_report, f, indent=2)
+
+    generate_validation_pdf(quality_report, reports_dir / "validation_report.pdf")
         
-    logger.info(f"Data Quality Report successfully written to: reports/validation_report.json", extra={"pipeline_step": "VALIDATE_END"})
+    logger.info("Data Quality Reports written to reports/validation_report.json and .pdf", extra={"pipeline_step": "VALIDATE_END"})
+    return quality_report
 
 if __name__ == "__main__":
     run_validation_pipeline()

@@ -1,7 +1,7 @@
 {
   "pipeline_name": "recomart_recommendation_pipeline",
   "metadata_version": "1.0.0",
-  "last_audit_timestamp": "2026-07-12T16:30:39.091864+00:00",
+  "last_audit_timestamp": "2026-07-18T15:23:24.269051+00:00",
   "data_versioning_tool": "Git LFS (Large File Storage)",
   "lineage_tracks": {
     "user_behavioral_features": {
@@ -39,6 +39,29 @@
         "item_interaction_count"
       ],
       "feature_store_serving_key": "product_features:[product_id] (online_feature_cache)"
+    },
+    "interaction_events": {
+      "source_nodes": [
+        "data/source/reviews.csv",
+        "data/source/sessions.csv",
+        "data/source/clickstream.csv"
+      ],
+      "ingestion_landing_zones": [
+        "data/raw/reviews/[date]/reviews.csv",
+        "data/raw/sessions/[date]/sessions.csv",
+        "data/raw/clickstream/[date]/clickstream.csv"
+      ],
+      "validation_gate": "schema, null, duplicate, range, and format checks",
+      "processed_staging": [
+        "data/processed/reviews/reviews.csv",
+        "data/processed/sessions/sessions.csv",
+        "data/processed/clickstream/clickstream.csv"
+      ],
+      "warehouse_destination_table": "fact_interactions (recomart_warehouse.db)",
+      "model_consumers": [
+        "Popularity_Baseline",
+        "Content_Based_TFIDF"
+      ]
     }
   }
 }

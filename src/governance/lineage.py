@@ -60,6 +60,14 @@ class IngestionLineageTracker:
                     "warehouse_destination_table": "dim_products (recomart_warehouse.db)",
                     "engineered_features": ["item_avg_rating", "item_interaction_count"],
                     "feature_store_serving_key": "product_features:[product_id] (online_feature_cache)"
+                },
+                "interaction_events": {
+                    "source_nodes": ["data/source/reviews.csv", "data/source/sessions.csv", "data/source/clickstream.csv"],
+                    "ingestion_landing_zones": ["data/raw/reviews/[date]/reviews.csv", "data/raw/sessions/[date]/sessions.csv", "data/raw/clickstream/[date]/clickstream.csv"],
+                    "validation_gate": "schema, null, duplicate, range, and format checks",
+                    "processed_staging": ["data/processed/reviews/reviews.csv", "data/processed/sessions/sessions.csv", "data/processed/clickstream/clickstream.csv"],
+                    "warehouse_destination_table": "fact_interactions (recomart_warehouse.db)",
+                    "model_consumers": ["Popularity_Baseline", "Content_Based_TFIDF"]
                 }
             }
         }
@@ -69,11 +77,11 @@ class IngestionLineageTracker:
             json.dump(lineage_graph, f, indent=2)
             
         print("\n" + "="*50)
-        print("⛓️ DATA LINEAGE MANIFEST RECORDED SUCCESSFULLY")
+        print("DATA LINEAGE MANIFEST RECORDED SUCCESSFULLY")
         print("="*50)
-        print(f"🔹 Versioning Provider    : Git LFS")
-        print(f"🔹 Monitored Lineage Paths : {len(lineage_graph['lineage_tracks'])}")
-        print(f"🔹 Output Audit Manifest  : reports/data_lineage.json")
+        print("- Versioning Provider    : Git LFS")
+        print(f"- Monitored Lineage Paths : {len(lineage_graph['lineage_tracks'])}")
+        print("- Output Audit Manifest  : reports/data_lineage.json")
         print("="*50 + "\n")
 
 if __name__ == "__main__":

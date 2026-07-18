@@ -1,98 +1,97 @@
-import sys
+"""Train recommendation models using a per-user holdout evaluation protocol."""
+
+import json
 import sqlite3
+import sys
 from pathlib import Path
-import pandas as pd
+from typing import Tuple
+
 import mlflow
+import pandas as pd
 
 src_dir = str(Path(__file__).resolve().parent.parent)
 if src_dir not in sys.path:
     sys.path.insert(0, src_dir)
 
 from common.logger import logger
-from models.popularity import PopularityBaselineModel
 from models.content_based import ContentBasedTFIDFModel
 from models.evaluator import RecommenderEvaluator
+from models.popularity import PopularityBaselineModel
+
 
 class RecommendationPipelineTrainer:
-    """Handles the model training coordination lifecycle and hooks up MLflow logs."""
-    
     def __init__(self):
         self.project_root = Path(src_dir).parent
         self.db_path = self.project_root / "data" / "warehouse" / "recomart_warehouse.db"
-        
+        self.artifact_path = self.project_root / "artifacts" / "recommendations.json"
+        self.mlflow_db = self.project_root / "mlflow.db"
+
     def _load_data_warehouse(self):
-        conn = sqlite3.connect(self.db_path)
-        interactions_df = pd.read_sql_query("SELECT * FROM fact_interactions", conn)
-        products_df = pd.read_sql_query("SELECT * FROM dim_products", conn)
-        users_df = pd.read_sql_query("SELECT * FROM dim_users", conn)
-        conn.close()
-        return users_df, products_df, interactions_df
+        with sqlite3.connect(self.db_path) as conn:
+            interactions = pd.read_sql_query("SELECT * FROM fact_interactions", conn)
+            products = pd.read_sql_query("SELECT * FROM dim_products", conn)
+            users = pd.read_sql_query("SELECT * FROM dim_users", conn)
+        return users, products, interactions
+
+    @staticmethod
+    def _split_interactions(interactions: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
+        """Hold out the latest interaction for each user with at least two interactions."""
+        ordered = interactions.copy()
+        ordered["review_date"] = pd.to_datetime(ordered["review_date"], errors="coerce")
+        ordered = ordered.sort_values(["user_id", "review_date", "review_id"], na_position="first")
+        eligible = ordered.groupby("user_id")["review_id"].transform("size") >= 2
+        test_indices = ordered[eligible].groupby("user_id").tail(1).index
+        return ordered.drop(index=test_indices), ordered.loc[test_indices]
+
+    def _log_evaluation(self, model_name, recommendations, test, top_k):
+        precision, recall, ndcg = RecommenderEvaluator.evaluate_at_k(test, recommendations, k=top_k)
+        mlflow.log_param("model_type", model_name)
+        mlflow.log_param("top_k_evaluation", top_k)
+        mlflow.log_metric(f"Precision_at_{top_k}", precision)
+        mlflow.log_metric(f"Recall_at_{top_k}", recall)
+        mlflow.log_metric(f"NDCG_at_{top_k}", ndcg)
+        return {"precision_at_k": precision, "recall_at_k": recall, "ndcg_at_k": ndcg}
 
     def train_and_track_all(self, top_k: int = 5):
-        logger.info("Initializing Task 9 Decoupled Model Training pipeline...", extra={"pipeline_step": "TRAIN_START"})
-        
         if not self.db_path.exists():
-            logger.critical(f"Aborting training: SQLite Database missing at {self.db_path}")
-            return
-            
+            raise FileNotFoundError(f"SQLite Database missing at {self.db_path}")
         users, products, interactions = self._load_data_warehouse()
+        train, test = self._split_interactions(interactions)
+        if test.empty:
+            raise ValueError("At least one user needs two interactions for holdout evaluation.")
+        # Do not inherit a machine-wide MLflow SQLite configuration, which may be read-only.
+        mlflow.set_tracking_uri(f"sqlite:///{self.mlflow_db.resolve().as_posix()}")
         mlflow.set_experiment("Recomart_Recommendation_System")
-        
-        # --- MODEL 1: POPULARITY RUN ---
-        with mlflow.start_run(run_name="Popularity_Baseline"):
-            logger.info("Training Popularity Baseline model variant...", extra={"pipeline_step": "TRAIN_POPULARITY"})
-            mlflow.log_param("model_type", "Popularity_Baseline")
-            mlflow.log_param("top_k_evaluation", top_k)
-            
-            pop_model = PopularityBaselineModel()
-            pop_recs = pop_model.recommend(users, products, top_k=top_k)
-            
-            p_at_k, r_at_k = RecommenderEvaluator.evaluate_at_k(interactions, pop_recs, k=top_k)
-            mlflow.log_metric(f"Precision_at_{top_k}", p_at_k)
-            mlflow.log_metric(f"Recall_at_{top_k}", r_at_k)
-            logger.info(f"Popularity Baseline Metrics logged -> Precision: {p_at_k:.4f}, Recall: {r_at_k:.4f}")
 
-        # --- MODEL 2: CONTENT-BASED RUN ---
-        with mlflow.start_run(run_name="Content_Based_TFIDF"):
-            logger.info("Training Content-Based TF-IDF Similarity engine...", extra={"pipeline_step": "TRAIN_CONTENT"})
-            mlflow.log_param("model_type", "Content_Based_TFIDF")
-            mlflow.log_param("top_k_evaluation", top_k)
-            
-            cb_model = ContentBasedTFIDFModel()
-            cb_recs = cb_model.recommend(users, products, interactions, top_k=top_k)
-            
-            p_at_k_cb, r_at_k_cb = RecommenderEvaluator.evaluate_at_k(interactions, cb_recs, k=top_k)
-            mlflow.log_metric(f"Precision_at_{top_k}", p_at_k_cb)
-            mlflow.log_metric(f"Recall_at_{top_k}", r_at_k_cb)
-            
-            print("\n" + "="*50)
-            print("🚀 TASK 9 MODEL DECOUPLED LIFECYCLE COMPLETE")
-            print("="*50)
-            print(f"🔹 MLflow Experiment Workspace : Recomart_Recommendation_System")
-            print(f"🔹 Popularity Baseline P@5     : {p_at_k:.4f}")
-            print(f"🔹 Content-Based TF-IDF P@5    : {p_at_k_cb:.4f}")
-            print("="*50 + "\n")
-            
-        # --- LIVE VERIFICATION CODE TARGET FOR USER U00001 ---
-        try:
-            available_user_ids = users["user_id"].unique()
-            test_user = "U00001" if "U00001" in available_user_ids else str(available_user_ids[0])
-            user_recs = cb_recs.get(test_user, [])
-            
-            print("🔍" + "="*48)
-            print(f"LIVE INFRASTRUCTURE TEST: RECOMMENDATIONS FOR USER [{test_user}]")
-            print("="*50)
-            print(f"🔹 Generated recommendations count: {len(user_recs)}")
-            print("-" * 50)
-            for idx, rec_pid in enumerate(user_recs, 1):
-                prod_row = products[products["product_id"] == rec_pid].iloc[0]
-                print(f"📍 Rec #{idx}: ID: {rec_pid} | {prod_row['product_name']} ({prod_row['category']})")
-            print("="*50 + "\n")
-        except Exception as eval_err:
-            print(f"❌ Verification test failed to map items: {str(eval_err)}")
+        with mlflow.start_run(run_name="Popularity_Baseline") as run:
+            pop_recs = PopularityBaselineModel().recommend(users, products, top_k=top_k)
+            pop_metrics = self._log_evaluation("Popularity_Baseline", pop_recs, test, top_k)
+            pop_run_id = run.info.run_id
 
-        logger.info("Model training suite and MLflow tracking complete.", extra={"pipeline_step": "TRAIN_COMPLETE"})
+        with mlflow.start_run(run_name="Content_Based_TFIDF") as run:
+            content_recs = ContentBasedTFIDFModel().recommend(users, products, train, top_k=top_k)
+            content_metrics = self._log_evaluation("Content_Based_TFIDF", content_recs, test, top_k)
+            payload = {
+                "model": "content_based_tfidf",
+                "top_k": top_k,
+                "generated_from_training_interactions": len(train),
+                "recommendations": content_recs,
+                "metrics": content_metrics,
+            }
+            self.artifact_path.parent.mkdir(exist_ok=True)
+            self.artifact_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+            mlflow.log_artifact(str(self.artifact_path))
+            content_run_id = run.info.run_id
+
+        result = {
+            "train_interactions": len(train), "test_interactions": len(test),
+            "popularity": {"run_id": pop_run_id, **pop_metrics},
+            "content_based": {"run_id": content_run_id, **content_metrics},
+            "inference_artifact": str(self.artifact_path),
+        }
+        logger.info(f"Model training complete: {result}", extra={"pipeline_step": "TRAIN_COMPLETE"})
+        return result
+
 
 if __name__ == "__main__":
-    trainer = RecommendationPipelineTrainer()
-    trainer.train_and_track_all(top_k=5)
+    print(json.dumps(RecommendationPipelineTrainer().train_and_track_all(), indent=2))

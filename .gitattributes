@@ -1,58 +1,5 @@
-# =======================================================
-# PRODUCTION GITIGNORE FOR RECOMART DATA PIPELINE
-# =======================================================
-
-# 1. Ignore Python Virtual Environments & Bytecode
-# 1. Broad Environment Overrides (Enforces global directory drop)
-.venv
-.venv/
-venv
-venv/
-env
-env/
-**/.venv/
-**/venv/
-
-# Bytecode files
-__pycache__/
-*.pyc
-__pycache__/
-/__pycache__
-*.pyc
-*.pyo
-*.pyd
-.pytest_cache/
-
-# 2. Ignore Transient Local Data Tiers (Keep Code Only)
-data/raw/
-data/validated/
-data/processed/
-data/external/
-
-# 3. Ignore Database Warehouse Registries & Online Store Caches
-data/warehouse/online_store.db
-data/warehouse/registry.db
-data/warehouse/recomart_warehouse.db
-data/warehouse/feature_registry.json
-
-# 4. Ignore Local Experiment Tracking Logs
-mlruns/
-.prefect/
-logs/ingestion.log
-
-# 5. Ignore Compiled Validation Reports (Keep them for manual upload if needed)
-reports/validation_report.json
-reports/validation_report.pdf
-reports/data_lineage.json
-
-# 6. Ignore OS Specific System Files
-.DS_Store
-Thumbs.db
-
-# 7. GIT LFS
 data/source/*.csv filter=lfs diff=lfs merge=lfs -text
 data/raw/**/*.csv filter=lfs diff=lfs merge=lfs -text
 data/validated/**/*.csv filter=lfs diff=lfs merge=lfs -text
 data/processed/**/*.csv filter=lfs diff=lfs merge=lfs -text
 data/warehouse/*.db filter=lfs diff=lfs merge=lfs -text
-
