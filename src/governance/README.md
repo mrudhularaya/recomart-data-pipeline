@@ -1,10 +1,16 @@
 # Data Versioning & Lineage
 
 ## Overview
-
 This module provides governance capabilities for the RecoMart recommendation pipeline by recording data lineage information for every pipeline execution. It maintains an audit trail of datasets as they move through ingestion, validation, preparation, feature engineering, and model training.
 
 The lineage manifest improves reproducibility, traceability, and debugging by documenting the origin, transformation stages, and output artifacts generated during the pipeline.
+
+## Responsibilities
+
+- Track dataset lineage
+- Record transformations
+- Record output artifacts
+- Generate lineage manifest
 
 ## Inputs
 
@@ -56,8 +62,12 @@ Model Training
 Prediction Artifacts
 ```
 
-## Generated Metadata
+## Execution
+```bash
+python src/governance/lineage_runner.py
+```
 
+## Generated Deliverables
 The lineage manifest includes information such as:
 
 - Pipeline execution timestamp

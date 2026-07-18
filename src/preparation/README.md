@@ -1,7 +1,6 @@
 # Task 5 — Data Preparation Layer
 
 ## Objective
-
 This layer takes structurally sound datasets from `data/validated/` and transforms them into an optimized state for recommendation models. Here, the pipeline performs necessary modifications, including structural deduplication, variable scaling, missing value imputation, and category conversion.
 
 ## Key Operations Performed
@@ -20,6 +19,17 @@ This layer takes structurally sound datasets from `data/validated/` and transfor
 | Date parsing | ✓ |
 
 
+## Inputs
+```bash
+data/validated/
+```
+
+## Outputs
+```bash
+data/processed/
+reports/eda/
+```
+
 ## Execution & Automation
 Run the data preparation pipeline from the root directory:
 ```bash
@@ -33,4 +43,8 @@ data/validated/ (Clean Input)
 [preparation_runner.py Engine]
        ↓
 data/processed/ (Deduplicated, Encoded, and Normalized Matrix Output)
+
+EDA Visualizations
+       - Interaction Distribution
+       - Item Popularity
 ```

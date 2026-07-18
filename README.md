@@ -26,7 +26,7 @@ recomart-data-pipeline/
 │
 ├── reports/                    # Generated pipeline deliverables
 │   ├── validation_report.json  # Data profiling metrics scorecard
-│   ├── validation_report.pdf   # Publication-ready Quality Report PDF
+│   ├── validation_report.pdf   # Quality Report PDF
 │   └── data_lineage.json       # Task 8: Provenance mapping asset graph logs
 │
 ├── src/                        # Complete Application Source Code Base

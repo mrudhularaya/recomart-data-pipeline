@@ -4,7 +4,7 @@
 This layer handles the orchestration and scheduling automation of the data pipeline. It leverages **Prefect** to construct an automated workflow that manages task states, handles retries, provides visibility into execution logs, and protects the system against data failure points on cross-platform architectures (Windows/macOS/Linux).
 
 
-## Workflow Orchestration Matrix
+## Workflow 
 
 The operational flow uses a single master `@flow` manager control node that executes individual pipeline routines wrapped inside standalone `@task` operators:
 
@@ -20,8 +20,23 @@ The operational flow uses a single master `@flow` manager control node that exec
 [Ingestion Task] ➔ [Validation Task] ➔ [Preparation Task] ➔ [Features Task] ➔ [Model Suite Task]
 ```
 
+## Inputs
+
+Pipeline modules
+
+## Outputs
+
+Execution logs
+Pipeline artifacts
+Prefect flow execution
+
 ## Execution & Automation
 To run the automated data pipeline locally:
 ```bash
 python src/orchestration/recomart_dag.py
 ```
+
+## Generated Deliverables
+
+Prefect execution logs
+End-to-end DAG execution

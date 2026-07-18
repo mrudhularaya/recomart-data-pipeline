@@ -1,11 +1,9 @@
 # Task 7 — Feature Store 
 
 ## Objective
+This layer implements a lightweight, metadata-driven **Feature Store**. It registers engineered analytical columns directly from the SQLite Data Warehouse, provisions an active **Online Key-Value Cache** to feed recommendation inference layers, and documents feature schemas within a central data catalog registry.
 
-This layer implements a lightweight, metadata-driven **Feature Store**. It registers engineered analytical columns directly from the SQLite Data Warehouse, provisions an active **Online Key-Value Cache** to feed real-time recommendation inference layers, and documents feature schemas within a central data catalog registry.
-
-## System Core Framework Architecture
-
+## Key Components
 Following the Single Responsibility Principle, this feature store is divided into three cleanly decoupled modules:
 *   `entities.py`: Central registration database for lookups or entity primary join keys (`user_id`, `product_id`).
 *   `feature_views.py`: Architectural documentation catalog defining features, source data tables, and normalization transformations.
@@ -29,6 +27,17 @@ CREATE TABLE IF NOT EXISTS online_feature_cache (
 The catalog generates an audit trail listing our active definitions:
 *   **`user_features`**: Tracks `user_activity_frequency` and `user_avg_rating` baselines linked to `user_id`.
 *   **`product_features`**: Tracks `item_avg_rating` performance records and `item_interaction_count` metrics mapped to `product_id`.
+
+## Inputs
+```bash
+SQLite Warehouse
+```
+
+## Outputs
+```bash
+feature_store.json
+online_feature_cache
+```
 
 ## Execution & Pipeline Orchestration
 
