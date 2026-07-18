@@ -24,6 +24,10 @@ recomart-data-pipeline/
 ├── logs/
 │   └── ingestion.log           # Uniform machine-readable JSON logging audit trails
 │
+├── docs/problem_formulation
+│   └── task1_report.md    
+│   └── task1_report.pdf         # Task 1: Problem Formulation - short report (PDF) 
+│
 ├── reports/                    # Generated pipeline deliverables
 │   ├── validation_report.json  # Data profiling metrics scorecard
 │   ├── validation_report.pdf   # Quality Report PDF
@@ -46,7 +50,19 @@ recomart-data-pipeline/
 
 ---
 
-## 🏗️ Comprehensive Pipeline Architecture
+## Project Documentation
+
+The repository includes the following documentation:
+
+- Task 1 – Problem Formulation (`docs/problem_formulation/`)
+- Module-specific README files for Tasks 2–10
+- Validation reports (`reports/`)
+- EDA visualizations (`reports/eda/`)
+- Data lineage manifest (`reports/data_lineage.json`)
+
+---
+
+## Comprehensive Pipeline Architecture
 
 ```text
                         Prefect Flow
@@ -108,6 +124,7 @@ recomart-data-pipeline/
 | Governance | Data lineage |
 | Orchestration | Prefect workflow |
 ---
+
 ## Technologies
 
 - Python
