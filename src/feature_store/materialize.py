@@ -12,14 +12,14 @@ if src_dir not in sys.path:
     sys.path.insert(0, src_dir)
 
 from common.logger import logger
-from feature_registry.feature_views import product_features_view, user_features_view
+from feature_store.feature_views import product_features_view, user_features_view
 
 
 class RecomartFeatureStore:
     def __init__(self):
         self.project_root = Path(src_dir).parent
         self.warehouse_db = self.project_root / "data" / "warehouse" / "recomart_warehouse.db"
-        self.registry_json = self.project_root / "data" / "warehouse" / "feature_registry.json"
+        self.registry_json = self.project_root / "data" / "warehouse" / "feature_store.json"
 
     @staticmethod
     def _create_online_schema(conn: sqlite3.Connection) -> None:

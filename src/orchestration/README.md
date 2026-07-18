@@ -1,11 +1,10 @@
-# Task 10 — End-to-End Pipeline Orchestration Layer (Prefect)
+# Task 10 — Pipeline Orchestration (Prefect)
 
-## 🎯 Objective
+## Objective
 This layer handles the orchestration and scheduling automation of the data pipeline. It leverages **Prefect** to construct an automated workflow that manages task states, handles retries, provides visibility into execution logs, and protects the system against data failure points on cross-platform architectures (Windows/macOS/Linux).
 
----
 
-## 🧱 Workflow Orchestration Matrix
+## Workflow Orchestration Matrix
 
 The operational flow uses a single master `@flow` manager control node that executes individual pipeline routines wrapped inside standalone `@task` operators:
 
@@ -15,21 +14,14 @@ The operational flow uses a single master `@flow` manager control node that exec
 4.  **`Feature Engineering & SQL Warehouse Load`** (`feature_task_node`): Builds aggregate behavioral tracking values (user activity frequencies, average ratings) and commits rows to the SQLite Relational Warehouse tables.
 5.  **`Recommendation Model Training & MLflow Tracking`** (`train_task_node`): Loads features from SQL, builds popularity and text-similarity recommenders, verifies predictions, and logs runs inside **MLflow**.
 
----
 
-## 🏛️ Flow Topology Definition
+## Flow Definition
 ```text
 [Ingestion Task] ➔ [Validation Task] ➔ [Preparation Task] ➔ [Features Task] ➔ [Model Suite Task]
 ```
 
-## 🚀 Execution & UI Dashboard
+## Execution & Automation
 To run the automated data pipeline locally:
 ```bash
 python src/orchestration/recomart_dag.py
-```
-
-### Reviewing the Local Web Dashboard UI
-Prefect includes a graphical web console. To launch the server locally and visually track task runs, success matrices, and flow durations, run this command in a separate terminal tab and open `http://127.0.0.1:4200` in your web browser:
-```bash
-prefect server start
 ```

@@ -32,7 +32,7 @@ from ingestion.run_ingestion import main as run_ingestion_func
 from validation.validation_runner import run_validation_pipeline as run_validation_func
 from preparation.preparation_runner import run_preparation_pipeline as run_preparation_func
 from feature_engineering.feature_runner import run_feature_pipeline as run_features_func
-from feature_registry.materialize import RecomartFeatureStore
+from feature_store.materialize import RecomartFeatureStore
 from governance.lineage import IngestionLineageTracker
 from preparation.eda import generate_eda_plots
 # --- DEFINE ISOLATED PREFECT TASKS ---

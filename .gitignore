@@ -16,7 +16,7 @@ data/processed/
 data/external/
 data/warehouse/recomart_warehouse.db
 data/warehouse/registry.db
-data/warehouse/feature_registry.json
+data/warehouse/feature_store.json
 reports/validation_report.json
 reports/validation_report.pdf
 reports/data_lineage.json

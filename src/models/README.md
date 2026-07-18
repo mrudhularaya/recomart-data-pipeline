@@ -1,11 +1,11 @@
-# Task 9 — Recommendation Model Training and MLflow Evaluation Layer
+# Task 9 — Model Training and Evaluation
 
-## 🎯 Objective
+## Objective
 This layer extracts prepared feature matrices and interaction logs from the SQLite Data Warehouse, runs aggregate popularity baseline and personalized content-based recommendation training loops, calculates execution metrics, and logs execution parameters into **MLflow**.
 
 ---
 
-## 🏛️ Decoupled Architectural Design
+## Decoupled Architectural Design
 
 Following the Single Responsibility Principle, the modeling codebase is divided into four single-purpose modules:
 *   `popularity.py`: Implements non-personalized baseline rankings based on interaction velocity and average item scores.
@@ -15,7 +15,7 @@ Following the Single Responsibility Principle, the modeling codebase is divided 
 
 ---
 
-## 💻 Model Core Architectures
+## Model Core Architectures
 
 ### 1. Popularity Baseline Recommender (`popularity.py`)
 *   **Logic:** Non-personalized catalog sorting. Orders item nodes using historical review volume (`item_interaction_count`) combined with average product ratings (`item_avg_rating`).
@@ -26,7 +26,7 @@ Following the Single Responsibility Principle, the modeling codebase is divided 
 
 ---
 
-## 📊 Experiment Tracking Specifications (MLflow)
+## Experiment Tracking Specifications (MLflow)
 
 The pipeline integrates **MLflow** to maintain execution traceability. Every training cycle generates an unchangeable run tracking parameters and metrics.
 
@@ -36,17 +36,11 @@ The pipeline integrates **MLflow** to maintain execution traceability. Every tra
 
 ---
 
-## 🚀 Execution & Tracking
+## Execution & Automation
 
 Run the master training orchestrator directly from your project root workspace:
 ```bash
 python src/models/trainer.py
-```
-
-### Reviewing the Interactive MLflow UI
-To open the graphical dashboard and evaluate performance metrics or parameter variations visually, execute this command in your project terminal and navigate to `http://localhost:5000` in your web browser:
-```bash
-mlflow ui
 ```
 
 ### Generated Deliverables
