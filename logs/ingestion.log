@@ -654,3 +654,315 @@
 {"timestamp": "2026-07-20T10:16:51.713258+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Generating data lineage manifest..."}
 {"timestamp": "2026-07-20T10:16:51.713258+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Compiling project data lineage graph map...", "pipeline_step": "LINEAGE_MAP"}
 {"timestamp": "2026-07-20T10:16:51.723622+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow execution completed smoothly.", "pipeline_step": "DAG_SUCCESS"}
+{"timestamp": "2026-07-20T10:19:52.750106+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow initializing sequential steps...", "pipeline_step": "DAG_START"}
+{"timestamp": "2026-07-20T10:19:52.793817+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Ingestion sub-routine..."}
+{"timestamp": "2026-07-20T10:19:52.794831+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Conductor initializing with metrics tracking...", "pipeline_step": "START"}
+{"timestamp": "2026-07-20T10:19:52.800832+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: users.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:19:52.847454+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 3,000 rows to data\\raw\\users\\2026-07-20\\users.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:19:52.849754+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: products.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:19:52.923252+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 728 rows to data\\raw\\products\\2026-07-20\\products.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:19:52.924371+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: reviews.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:19:53.013717+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 6,327 rows to data\\raw\\reviews\\2026-07-20\\reviews.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:19:53.015718+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: sessions.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:19:53.116515+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 15,000 rows to data\\raw\\sessions\\2026-07-20\\sessions.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:19:53.118516+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: clickstream.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:19:53.896424+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 122,114 rows to data\\raw\\clickstream\\2026-07-20\\clickstream.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:19:53.897526+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initiating HTTP GET request to endpoint: https://dummyjson.com/products", "pipeline_step": "API_EXTRACT"}
+{"timestamp": "2026-07-20T10:19:53.981849+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved JSON payload response out to data\\external\\products_api\\2026-07-20\\products_api.json", "pipeline_step": "EXTERNAL_SAVE"}
+{"timestamp": "2026-07-20T10:19:53.983396+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Ingestion cycle complete.", "pipeline_step": "COMPLETE"}
+{"timestamp": "2026-07-20T10:19:54.002023+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Validation checks & compiling PDF..."}
+{"timestamp": "2026-07-20T10:19:54.008544+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Validation engine...", "pipeline_step": "VALIDATE_START"}
+{"timestamp": "2026-07-20T10:19:54.010059+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [clickstream]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:19:55.065013+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/clickstream/"}
+{"timestamp": "2026-07-20T10:19:55.067251+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [products]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:19:55.178488+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/products/"}
+{"timestamp": "2026-07-20T10:19:55.179995+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [reviews]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:19:55.312145+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/reviews/"}
+{"timestamp": "2026-07-20T10:19:55.313386+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [sessions]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:19:55.454962+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/sessions/"}
+{"timestamp": "2026-07-20T10:19:55.455960+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [users]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:19:55.523855+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/users/"}
+{"timestamp": "2026-07-20T10:19:55.533425+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Quality Reports written to reports/validation_report.json and .pdf", "pipeline_step": "VALIDATE_END"}
+{"timestamp": "2026-07-20T10:19:55.547464+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Cleansing & Normalization scaling..."}
+{"timestamp": "2026-07-20T10:19:55.548971+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Preparation engine...", "pipeline_step": "PREPARE_START"}
+{"timestamp": "2026-07-20T10:19:55.550480+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'users' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:19:55.637068+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared users table (3000 rows)."}
+{"timestamp": "2026-07-20T10:19:55.638577+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'products' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:19:55.707645+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared products table (728 rows)."}
+{"timestamp": "2026-07-20T10:19:55.708646+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'reviews' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:19:55.857199+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared reviews table (6327 rows)."}
+{"timestamp": "2026-07-20T10:19:55.859720+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'sessions' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:19:56.007423+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared sessions table (15000 rows)."}
+{"timestamp": "2026-07-20T10:19:56.009064+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'clickstream' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:19:57.261203+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared clickstream table (122114 rows)."}
+{"timestamp": "2026-07-20T10:19:57.262107+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Preparation processing routines executed completely.", "pipeline_step": "PREPARE_END"}
+{"timestamp": "2026-07-20T10:19:58.265021+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Calculating recommendation metrics & writing to SQLite..."}
+{"timestamp": "2026-07-20T10:19:58.273079+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Feature Engineering & Database Transformation engine...", "pipeline_step": "FEATURE_START"}
+{"timestamp": "2026-07-20T10:19:58.674471+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Warehouse loaded: {'dim_users': 3000, 'dim_products': 728, 'fact_interactions': 6327}", "pipeline_step": "FEATURE_END"}
+{"timestamp": "2026-07-20T10:19:58.689542+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Materializing versioned online features..."}
+{"timestamp": "2026-07-20T10:19:58.881020+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Materialized 22368 versioned feature values", "pipeline_step": "STORE_COMPLETE"}
+{"timestamp": "2026-07-20T10:19:58.888544+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running popularity baselines and TF-IDF similarity matrix..."}
+{"timestamp": "2026-07-20T10:20:06.797609+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Model training complete: {'train_interactions': 4465, 'test_interactions': 1862, 'popularity': {'run_id': 'b7a8122d926a4cc2a240dca309d64706', 'precision_at_k': 0.0019334049409237381, 'recall_at_k': 0.00966702470461869, 'ndcg_at_k': 0.005733920679757089}, 'content_based': {'run_id': '8b32a379d0d74ce386c43263e7cdd852', 'precision_at_k': 0.0009667024704618691, 'recall_at_k': 0.004833512352309345, 'ndcg_at_k': 0.003627358956423823}, 'inference_artifact': 'C:\\\\Users\\\\mrudh\\\\BITS WILP\\\\Assignments\\\\Sem 2\\\\DMML\\\\recomart-data-pipeline\\\\artifacts\\\\recommendations.json'}", "pipeline_step": "TRAIN_COMPLETE"}
+{"timestamp": "2026-07-20T10:20:06.811369+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Generating data lineage manifest..."}
+{"timestamp": "2026-07-20T10:20:06.812461+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Compiling project data lineage graph map...", "pipeline_step": "LINEAGE_MAP"}
+{"timestamp": "2026-07-20T10:20:06.820965+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow execution completed smoothly.", "pipeline_step": "DAG_SUCCESS"}
+{"timestamp": "2026-07-20T10:28:33.390544+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow initializing sequential steps...", "pipeline_step": "DAG_START"}
+{"timestamp": "2026-07-20T10:28:33.417449+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Ingestion sub-routine..."}
+{"timestamp": "2026-07-20T10:28:33.419461+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Conductor initializing with metrics tracking...", "pipeline_step": "START"}
+{"timestamp": "2026-07-20T10:28:33.431644+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: users.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:28:33.521218+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 3,000 rows to data\\raw\\users\\2026-07-20\\users.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:28:33.523893+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: products.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:28:33.563530+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 728 rows to data\\raw\\products\\2026-07-20\\products.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:28:33.565541+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: reviews.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:28:33.638184+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 6,327 rows to data\\raw\\reviews\\2026-07-20\\reviews.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:28:33.639289+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: sessions.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:28:33.719574+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 15,000 rows to data\\raw\\sessions\\2026-07-20\\sessions.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:28:33.721165+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: clickstream.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:28:34.246840+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 122,114 rows to data\\raw\\clickstream\\2026-07-20\\clickstream.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:28:34.247841+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initiating HTTP GET request to endpoint: https://dummyjson.com/products", "pipeline_step": "API_EXTRACT"}
+{"timestamp": "2026-07-20T10:28:34.315423+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved JSON payload response out to data\\external\\products_api\\2026-07-20\\products_api.json", "pipeline_step": "EXTERNAL_SAVE"}
+{"timestamp": "2026-07-20T10:28:34.315423+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Ingestion cycle complete.", "pipeline_step": "COMPLETE"}
+{"timestamp": "2026-07-20T10:28:34.334489+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Validation checks & compiling PDF..."}
+{"timestamp": "2026-07-20T10:28:34.335483+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Validation engine...", "pipeline_step": "VALIDATE_START"}
+{"timestamp": "2026-07-20T10:28:34.338489+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [clickstream]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:28:34.931927+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/clickstream/"}
+{"timestamp": "2026-07-20T10:28:34.933966+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [products]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:28:34.990722+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/products/"}
+{"timestamp": "2026-07-20T10:28:34.992287+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [reviews]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:28:35.065228+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/reviews/"}
+{"timestamp": "2026-07-20T10:28:35.067098+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [sessions]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:28:35.158676+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/sessions/"}
+{"timestamp": "2026-07-20T10:28:35.160650+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [users]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:28:35.203923+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/users/"}
+{"timestamp": "2026-07-20T10:28:35.211701+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Quality Reports written to reports/validation_report.json and .pdf", "pipeline_step": "VALIDATE_END"}
+{"timestamp": "2026-07-20T10:28:35.220218+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Cleansing & Normalization scaling..."}
+{"timestamp": "2026-07-20T10:28:35.222871+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Preparation engine...", "pipeline_step": "PREPARE_START"}
+{"timestamp": "2026-07-20T10:28:35.223735+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'users' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:28:35.290722+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared users table (3000 rows)."}
+{"timestamp": "2026-07-20T10:28:35.291679+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'products' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:28:35.336238+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared products table (728 rows)."}
+{"timestamp": "2026-07-20T10:28:35.337102+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'reviews' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:28:35.445946+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared reviews table (6327 rows)."}
+{"timestamp": "2026-07-20T10:28:35.446894+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'sessions' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:28:35.540896+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared sessions table (15000 rows)."}
+{"timestamp": "2026-07-20T10:28:35.541898+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'clickstream' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:28:36.233702+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared clickstream table (122114 rows)."}
+{"timestamp": "2026-07-20T10:28:36.233702+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Preparation processing routines executed completely.", "pipeline_step": "PREPARE_END"}
+{"timestamp": "2026-07-20T10:28:36.846068+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Calculating recommendation metrics & writing to SQLite..."}
+{"timestamp": "2026-07-20T10:28:36.846068+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Feature Engineering & Database Transformation engine...", "pipeline_step": "FEATURE_START"}
+{"timestamp": "2026-07-20T10:28:37.079191+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Warehouse loaded: {'dim_users': 3000, 'dim_products': 728, 'fact_interactions': 6327}", "pipeline_step": "FEATURE_END"}
+{"timestamp": "2026-07-20T10:28:37.088705+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Materializing versioned online features..."}
+{"timestamp": "2026-07-20T10:28:37.187791+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Materialized 22368 versioned feature values", "pipeline_step": "STORE_COMPLETE"}
+{"timestamp": "2026-07-20T10:28:37.194341+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running popularity baselines and TF-IDF similarity matrix..."}
+{"timestamp": "2026-07-20T10:28:41.240969+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Model training complete: {'train_interactions': 4465, 'test_interactions': 1862, 'popularity': {'run_id': '9b853bf0a43941a994f7ec5e897186fe', 'precision_at_k': 0.0019334049409237381, 'recall_at_k': 0.00966702470461869, 'ndcg_at_k': 0.005733920679757089}, 'content_based': {'run_id': '4397253bc8324c27a84b6aa0886a2457', 'precision_at_k': 0.0009667024704618691, 'recall_at_k': 0.004833512352309345, 'ndcg_at_k': 0.003627358956423823}, 'inference_artifact': 'C:\\\\Users\\\\mrudh\\\\BITS WILP\\\\Assignments\\\\Sem 2\\\\DMML\\\\recomart-data-pipeline\\\\artifacts\\\\recommendations.json'}", "pipeline_step": "TRAIN_COMPLETE"}
+{"timestamp": "2026-07-20T10:28:41.253055+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Generating data lineage manifest..."}
+{"timestamp": "2026-07-20T10:28:41.254056+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Compiling project data lineage graph map...", "pipeline_step": "LINEAGE_MAP"}
+{"timestamp": "2026-07-20T10:28:41.261462+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow execution completed smoothly.", "pipeline_step": "DAG_SUCCESS"}
+{"timestamp": "2026-07-20T10:29:24.309567+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow initializing sequential steps...", "pipeline_step": "DAG_START"}
+{"timestamp": "2026-07-20T10:29:24.337921+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Ingestion sub-routine..."}
+{"timestamp": "2026-07-20T10:29:24.337921+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Conductor initializing with metrics tracking...", "pipeline_step": "START"}
+{"timestamp": "2026-07-20T10:29:24.345767+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: users.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:29:24.412156+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 3,000 rows to data\\raw\\users\\2026-07-20\\users.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:29:24.419450+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: products.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:29:24.477608+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 728 rows to data\\raw\\products\\2026-07-20\\products.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:29:24.477608+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: reviews.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:29:24.561101+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 6,327 rows to data\\raw\\reviews\\2026-07-20\\reviews.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:29:24.563107+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: sessions.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:29:24.640701+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 15,000 rows to data\\raw\\sessions\\2026-07-20\\sessions.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:29:24.642354+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: clickstream.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:29:25.154840+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 122,114 rows to data\\raw\\clickstream\\2026-07-20\\clickstream.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:29:25.164183+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initiating HTTP GET request to endpoint: https://dummyjson.com/products", "pipeline_step": "API_EXTRACT"}
+{"timestamp": "2026-07-20T10:29:25.235992+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved JSON payload response out to data\\external\\products_api\\2026-07-20\\products_api.json", "pipeline_step": "EXTERNAL_SAVE"}
+{"timestamp": "2026-07-20T10:29:25.236996+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Ingestion cycle complete.", "pipeline_step": "COMPLETE"}
+{"timestamp": "2026-07-20T10:29:25.252680+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Validation checks & compiling PDF..."}
+{"timestamp": "2026-07-20T10:29:25.252680+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Validation engine...", "pipeline_step": "VALIDATE_START"}
+{"timestamp": "2026-07-20T10:29:25.252680+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [clickstream]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:29:25.883089+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/clickstream/"}
+{"timestamp": "2026-07-20T10:29:25.883089+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [products]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:29:25.947636+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/products/"}
+{"timestamp": "2026-07-20T10:29:25.948651+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [reviews]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:29:26.039243+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/reviews/"}
+{"timestamp": "2026-07-20T10:29:26.040503+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [sessions]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:29:26.141637+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/sessions/"}
+{"timestamp": "2026-07-20T10:29:26.153765+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [users]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:29:26.194657+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/users/"}
+{"timestamp": "2026-07-20T10:29:26.206708+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Quality Reports written to reports/validation_report.json and .pdf", "pipeline_step": "VALIDATE_END"}
+{"timestamp": "2026-07-20T10:29:26.220701+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Cleansing & Normalization scaling..."}
+{"timestamp": "2026-07-20T10:29:26.220701+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Preparation engine...", "pipeline_step": "PREPARE_START"}
+{"timestamp": "2026-07-20T10:29:26.220701+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'users' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:29:26.286626+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared users table (3000 rows)."}
+{"timestamp": "2026-07-20T10:29:26.287627+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'products' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:29:26.324974+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared products table (728 rows)."}
+{"timestamp": "2026-07-20T10:29:26.324974+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'reviews' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:29:26.406901+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared reviews table (6327 rows)."}
+{"timestamp": "2026-07-20T10:29:26.406901+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'sessions' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:29:26.529305+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared sessions table (15000 rows)."}
+{"timestamp": "2026-07-20T10:29:26.529305+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'clickstream' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:29:27.404452+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared clickstream table (122114 rows)."}
+{"timestamp": "2026-07-20T10:29:27.404452+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Preparation processing routines executed completely.", "pipeline_step": "PREPARE_END"}
+{"timestamp": "2026-07-20T10:29:28.096686+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Calculating recommendation metrics & writing to SQLite..."}
+{"timestamp": "2026-07-20T10:29:28.096686+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Feature Engineering & Database Transformation engine...", "pipeline_step": "FEATURE_START"}
+{"timestamp": "2026-07-20T10:29:28.353739+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Warehouse loaded: {'dim_users': 3000, 'dim_products': 728, 'fact_interactions': 6327}", "pipeline_step": "FEATURE_END"}
+{"timestamp": "2026-07-20T10:29:28.368774+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Materializing versioned online features..."}
+{"timestamp": "2026-07-20T10:29:28.490640+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Materialized 22368 versioned feature values", "pipeline_step": "STORE_COMPLETE"}
+{"timestamp": "2026-07-20T10:29:28.505172+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running popularity baselines and TF-IDF similarity matrix..."}
+{"timestamp": "2026-07-20T10:29:32.491097+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Model training complete: {'train_interactions': 4465, 'test_interactions': 1862, 'popularity': {'run_id': '180ec2c71294420a978644c9f1beacf0', 'precision_at_k': 0.0019334049409237381, 'recall_at_k': 0.00966702470461869, 'ndcg_at_k': 0.005733920679757089}, 'content_based': {'run_id': '849e39e3f0ef4a09ac4f5938706a9503', 'precision_at_k': 0.0009667024704618691, 'recall_at_k': 0.004833512352309345, 'ndcg_at_k': 0.003627358956423823}, 'inference_artifact': 'C:\\\\Users\\\\mrudh\\\\BITS WILP\\\\Assignments\\\\Sem 2\\\\DMML\\\\recomart-data-pipeline\\\\artifacts\\\\recommendations.json'}", "pipeline_step": "TRAIN_COMPLETE"}
+{"timestamp": "2026-07-20T10:29:32.491097+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Generating data lineage manifest..."}
+{"timestamp": "2026-07-20T10:29:32.491097+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Compiling project data lineage graph map...", "pipeline_step": "LINEAGE_MAP"}
+{"timestamp": "2026-07-20T10:29:32.506171+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow execution completed smoothly.", "pipeline_step": "DAG_SUCCESS"}
+{"timestamp": "2026-07-20T10:30:59.711476+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow initializing sequential steps...", "pipeline_step": "DAG_START"}
+{"timestamp": "2026-07-20T10:30:59.728786+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Ingestion sub-routine..."}
+{"timestamp": "2026-07-20T10:30:59.729788+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Conductor initializing with metrics tracking...", "pipeline_step": "START"}
+{"timestamp": "2026-07-20T10:30:59.732788+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: users.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:30:59.760846+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 3,000 rows to data\\raw\\users\\2026-07-20\\users.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:30:59.762846+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: products.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:30:59.797330+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 728 rows to data\\raw\\products\\2026-07-20\\products.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:30:59.798346+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: reviews.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:30:59.859528+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 6,327 rows to data\\raw\\reviews\\2026-07-20\\reviews.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:30:59.861035+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: sessions.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:30:59.947416+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 15,000 rows to data\\raw\\sessions\\2026-07-20\\sessions.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:30:59.948924+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: clickstream.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:31:00.405431+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 122,114 rows to data\\raw\\clickstream\\2026-07-20\\clickstream.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:31:00.406605+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initiating HTTP GET request to endpoint: https://dummyjson.com/products", "pipeline_step": "API_EXTRACT"}
+{"timestamp": "2026-07-20T10:31:00.459401+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved JSON payload response out to data\\external\\products_api\\2026-07-20\\products_api.json", "pipeline_step": "EXTERNAL_SAVE"}
+{"timestamp": "2026-07-20T10:31:00.460437+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Ingestion cycle complete.", "pipeline_step": "COMPLETE"}
+{"timestamp": "2026-07-20T10:31:00.473603+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Validation checks & compiling PDF..."}
+{"timestamp": "2026-07-20T10:31:00.474712+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Validation engine...", "pipeline_step": "VALIDATE_START"}
+{"timestamp": "2026-07-20T10:31:00.475600+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [clickstream]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.027817+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/clickstream/"}
+{"timestamp": "2026-07-20T10:31:01.028814+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [products]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.085936+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/products/"}
+{"timestamp": "2026-07-20T10:31:01.087444+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [reviews]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.177542+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/reviews/"}
+{"timestamp": "2026-07-20T10:31:01.178549+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [sessions]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.277240+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/sessions/"}
+{"timestamp": "2026-07-20T10:31:01.278748+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [users]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.333184+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/users/"}
+{"timestamp": "2026-07-20T10:31:01.340208+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Quality Reports written to reports/validation_report.json and .pdf", "pipeline_step": "VALIDATE_END"}
+{"timestamp": "2026-07-20T10:31:01.350227+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Cleansing & Normalization scaling..."}
+{"timestamp": "2026-07-20T10:31:01.351235+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Preparation engine...", "pipeline_step": "PREPARE_START"}
+{"timestamp": "2026-07-20T10:31:01.352234+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'users' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.410528+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared users table (3000 rows)."}
+{"timestamp": "2026-07-20T10:31:01.411525+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'products' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.458612+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared products table (728 rows)."}
+{"timestamp": "2026-07-20T10:31:01.459618+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'reviews' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.536320+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared reviews table (6327 rows)."}
+{"timestamp": "2026-07-20T10:31:01.537322+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'sessions' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:31:01.630572+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared sessions table (15000 rows)."}
+{"timestamp": "2026-07-20T10:31:01.631573+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'clickstream' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:31:02.353745+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared clickstream table (122114 rows)."}
+{"timestamp": "2026-07-20T10:31:02.354730+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Preparation processing routines executed completely.", "pipeline_step": "PREPARE_END"}
+{"timestamp": "2026-07-20T10:31:03.015366+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Calculating recommendation metrics & writing to SQLite..."}
+{"timestamp": "2026-07-20T10:31:03.015366+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Feature Engineering & Database Transformation engine...", "pipeline_step": "FEATURE_START"}
+{"timestamp": "2026-07-20T10:31:03.262104+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Warehouse loaded: {'dim_users': 3000, 'dim_products': 728, 'fact_interactions': 6327}", "pipeline_step": "FEATURE_END"}
+{"timestamp": "2026-07-20T10:31:03.271893+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Materializing versioned online features..."}
+{"timestamp": "2026-07-20T10:31:03.403370+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Materialized 22368 versioned feature values", "pipeline_step": "STORE_COMPLETE"}
+{"timestamp": "2026-07-20T10:31:03.414893+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running popularity baselines and TF-IDF similarity matrix..."}
+{"timestamp": "2026-07-20T10:31:07.531184+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Model training complete: {'train_interactions': 4465, 'test_interactions': 1862, 'popularity': {'run_id': 'f8e24b8b948a4a4197a6a046310ecc26', 'precision_at_k': 0.0019334049409237381, 'recall_at_k': 0.00966702470461869, 'ndcg_at_k': 0.005733920679757089}, 'content_based': {'run_id': '7aede8fcf69a47d4bc8a45983218db0a', 'precision_at_k': 0.0009667024704618691, 'recall_at_k': 0.004833512352309345, 'ndcg_at_k': 0.003627358956423823}, 'inference_artifact': 'C:\\\\Users\\\\mrudh\\\\BITS WILP\\\\Assignments\\\\Sem 2\\\\DMML\\\\recomart-data-pipeline\\\\artifacts\\\\recommendations.json'}", "pipeline_step": "TRAIN_COMPLETE"}
+{"timestamp": "2026-07-20T10:31:07.543219+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Generating data lineage manifest..."}
+{"timestamp": "2026-07-20T10:31:07.544221+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Compiling project data lineage graph map...", "pipeline_step": "LINEAGE_MAP"}
+{"timestamp": "2026-07-20T10:31:07.548226+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow execution completed smoothly.", "pipeline_step": "DAG_SUCCESS"}
+{"timestamp": "2026-07-20T10:41:44.755434+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow initializing sequential steps...", "pipeline_step": "DAG_START"}
+{"timestamp": "2026-07-20T10:41:44.775312+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Ingestion sub-routine..."}
+{"timestamp": "2026-07-20T10:41:44.776308+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Conductor initializing with metrics tracking...", "pipeline_step": "START"}
+{"timestamp": "2026-07-20T10:41:44.779322+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: users.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:41:44.827113+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 3,000 rows to data\\raw\\users\\2026-07-20\\users.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:41:44.831017+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: products.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:41:44.871098+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 728 rows to data\\raw\\products\\2026-07-20\\products.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:41:44.872098+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: reviews.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:41:44.927517+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 6,327 rows to data\\raw\\reviews\\2026-07-20\\reviews.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:41:44.929132+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: sessions.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:41:44.989808+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 15,000 rows to data\\raw\\sessions\\2026-07-20\\sessions.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:41:44.990888+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: clickstream.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:41:45.422736+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 122,114 rows to data\\raw\\clickstream\\2026-07-20\\clickstream.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:41:45.422736+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initiating HTTP GET request to endpoint: https://dummyjson.com/products", "pipeline_step": "API_EXTRACT"}
+{"timestamp": "2026-07-20T10:41:45.507303+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved JSON payload response out to data\\external\\products_api\\2026-07-20\\products_api.json", "pipeline_step": "EXTERNAL_SAVE"}
+{"timestamp": "2026-07-20T10:41:45.508304+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Ingestion cycle complete.", "pipeline_step": "COMPLETE"}
+{"timestamp": "2026-07-20T10:41:45.523826+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Validation checks & compiling PDF..."}
+{"timestamp": "2026-07-20T10:41:45.524827+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Validation engine...", "pipeline_step": "VALIDATE_START"}
+{"timestamp": "2026-07-20T10:41:45.525826+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [clickstream]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.029460+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/clickstream/"}
+{"timestamp": "2026-07-20T10:41:46.030459+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [products]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.085085+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/products/"}
+{"timestamp": "2026-07-20T10:41:46.086070+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [reviews]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.153962+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/reviews/"}
+{"timestamp": "2026-07-20T10:41:46.154961+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [sessions]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.239005+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/sessions/"}
+{"timestamp": "2026-07-20T10:41:46.240005+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [users]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.278820+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/users/"}
+{"timestamp": "2026-07-20T10:41:46.284839+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Quality Reports written to reports/validation_report.json and .pdf", "pipeline_step": "VALIDATE_END"}
+{"timestamp": "2026-07-20T10:41:46.291291+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Cleansing & Normalization scaling..."}
+{"timestamp": "2026-07-20T10:41:46.291291+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Preparation engine...", "pipeline_step": "PREPARE_START"}
+{"timestamp": "2026-07-20T10:41:46.294293+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'users' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.349961+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared users table (3000 rows)."}
+{"timestamp": "2026-07-20T10:41:46.350833+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'products' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.383242+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared products table (728 rows)."}
+{"timestamp": "2026-07-20T10:41:46.384243+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'reviews' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.470083+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared reviews table (6327 rows)."}
+{"timestamp": "2026-07-20T10:41:46.470083+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'sessions' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:41:46.548900+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared sessions table (15000 rows)."}
+{"timestamp": "2026-07-20T10:41:46.549927+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'clickstream' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:41:47.151263+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared clickstream table (122114 rows)."}
+{"timestamp": "2026-07-20T10:41:47.152136+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Preparation processing routines executed completely.", "pipeline_step": "PREPARE_END"}
+{"timestamp": "2026-07-20T10:41:47.695854+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Calculating recommendation metrics & writing to SQLite..."}
+{"timestamp": "2026-07-20T10:41:47.698360+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Feature Engineering & Database Transformation engine...", "pipeline_step": "FEATURE_START"}
+{"timestamp": "2026-07-20T10:41:47.913541+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Warehouse loaded: {'dim_users': 3000, 'dim_products': 728, 'fact_interactions': 6327}", "pipeline_step": "FEATURE_END"}
+{"timestamp": "2026-07-20T10:41:47.920055+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Materializing versioned online features..."}
+{"timestamp": "2026-07-20T10:41:48.022031+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Materialized 22368 versioned feature values", "pipeline_step": "STORE_COMPLETE"}
+{"timestamp": "2026-07-20T10:41:48.027030+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running popularity baselines and TF-IDF similarity matrix..."}
+{"timestamp": "2026-07-20T10:41:51.766958+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Model training complete: {'train_interactions': 4465, 'test_interactions': 1862, 'popularity': {'run_id': '0adcef4bc7d445cca31da1cd44dba88e', 'precision_at_k': 0.0019334049409237381, 'recall_at_k': 0.00966702470461869, 'ndcg_at_k': 0.005733920679757089}, 'content_based': {'run_id': '730216e7f0b94b7fa14faedc7c938022', 'precision_at_k': 0.0009667024704618691, 'recall_at_k': 0.004833512352309345, 'ndcg_at_k': 0.003627358956423823}, 'inference_artifact': 'C:\\\\Users\\\\mrudh\\\\BITS WILP\\\\Assignments\\\\Sem 2\\\\DMML\\\\recomart-data-pipeline\\\\artifacts\\\\recommendations.json'}", "pipeline_step": "TRAIN_COMPLETE"}
+{"timestamp": "2026-07-20T10:41:51.774959+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Generating data lineage manifest..."}
+{"timestamp": "2026-07-20T10:41:51.775959+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Compiling project data lineage graph map...", "pipeline_step": "LINEAGE_MAP"}
+{"timestamp": "2026-07-20T10:41:51.784023+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow execution completed smoothly.", "pipeline_step": "DAG_SUCCESS"}
+{"timestamp": "2026-07-20T10:52:51.910846+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow initializing sequential steps...", "pipeline_step": "DAG_START"}
+{"timestamp": "2026-07-20T10:52:51.933408+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Ingestion sub-routine..."}
+{"timestamp": "2026-07-20T10:52:51.934416+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Conductor initializing with metrics tracking...", "pipeline_step": "START"}
+{"timestamp": "2026-07-20T10:52:51.940926+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: users.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:52:51.980771+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 3,000 rows to data\\raw\\users\\2026-07-20\\users.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:52:51.981773+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: products.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:52:52.029915+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 728 rows to data\\raw\\products\\2026-07-20\\products.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:52:52.031916+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: reviews.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:52:52.088077+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 6,327 rows to data\\raw\\reviews\\2026-07-20\\reviews.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:52:52.089077+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: sessions.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:52:52.153889+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 15,000 rows to data\\raw\\sessions\\2026-07-20\\sessions.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:52:52.154894+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Reading CSV file into memory: clickstream.csv", "pipeline_step": "CSV_EXTRACT"}
+{"timestamp": "2026-07-20T10:52:52.590758+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved 122,114 rows to data\\raw\\clickstream\\2026-07-20\\clickstream.csv", "pipeline_step": "RAW_SAVE"}
+{"timestamp": "2026-07-20T10:52:52.591760+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initiating HTTP GET request to endpoint: https://dummyjson.com/products", "pipeline_step": "API_EXTRACT"}
+{"timestamp": "2026-07-20T10:52:52.680699+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Saved JSON payload response out to data\\external\\products_api\\2026-07-20\\products_api.json", "pipeline_step": "EXTERNAL_SAVE"}
+{"timestamp": "2026-07-20T10:52:52.681762+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Ingestion cycle complete.", "pipeline_step": "COMPLETE"}
+{"timestamp": "2026-07-20T10:52:52.695067+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Validation checks & compiling PDF..."}
+{"timestamp": "2026-07-20T10:52:52.697073+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Validation engine...", "pipeline_step": "VALIDATE_START"}
+{"timestamp": "2026-07-20T10:52:52.699070+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [clickstream]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.218860+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/clickstream/"}
+{"timestamp": "2026-07-20T10:52:53.219862+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [products]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.268657+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/products/"}
+{"timestamp": "2026-07-20T10:52:53.269567+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [reviews]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.338399+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/reviews/"}
+{"timestamp": "2026-07-20T10:52:53.339311+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [sessions]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.419870+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/sessions/"}
+{"timestamp": "2026-07-20T10:52:53.420741+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Profiling raw landing zone data for: [users]", "pipeline_step": "VALIDATE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.456861+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Successfully staged validated copy to data/validated/users/"}
+{"timestamp": "2026-07-20T10:52:53.462081+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Quality Reports written to reports/validation_report.json and .pdf", "pipeline_step": "VALIDATE_END"}
+{"timestamp": "2026-07-20T10:52:53.471284+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running Data Cleansing & Normalization scaling..."}
+{"timestamp": "2026-07-20T10:52:53.472250+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Data Preparation engine...", "pipeline_step": "PREPARE_START"}
+{"timestamp": "2026-07-20T10:52:53.473756+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'users' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.529842+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared users table (3000 rows)."}
+{"timestamp": "2026-07-20T10:52:53.529842+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'products' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.574252+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared products table (728 rows)."}
+{"timestamp": "2026-07-20T10:52:53.574252+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'reviews' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.663142+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared reviews table (6327 rows)."}
+{"timestamp": "2026-07-20T10:52:53.664089+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'sessions' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:52:53.745001+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared sessions table (15000 rows)."}
+{"timestamp": "2026-07-20T10:52:53.745912+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Preparing 'clickstream' dataset...", "pipeline_step": "PREPARE_LOOP"}
+{"timestamp": "2026-07-20T10:52:54.352946+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Staged cleaned and prepared clickstream table (122114 rows)."}
+{"timestamp": "2026-07-20T10:52:54.353949+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Data Preparation processing routines executed completely.", "pipeline_step": "PREPARE_END"}
+{"timestamp": "2026-07-20T10:52:54.841610+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Calculating recommendation metrics & writing to SQLite..."}
+{"timestamp": "2026-07-20T10:52:54.842610+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Initializing Feature Engineering & Database Transformation engine...", "pipeline_step": "FEATURE_START"}
+{"timestamp": "2026-07-20T10:52:55.054055+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Warehouse loaded: {'dim_users': 3000, 'dim_products': 728, 'fact_interactions': 6327}", "pipeline_step": "FEATURE_END"}
+{"timestamp": "2026-07-20T10:52:55.060542+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Materializing versioned online features..."}
+{"timestamp": "2026-07-20T10:52:55.154891+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Materialized 22368 versioned feature values", "pipeline_step": "STORE_COMPLETE"}
+{"timestamp": "2026-07-20T10:52:55.159890+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Running popularity baselines and TF-IDF similarity matrix..."}
+{"timestamp": "2026-07-20T10:52:58.271103+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Model training complete: {'train_interactions': 4465, 'test_interactions': 1862, 'popularity': {'run_id': 'eb0eab987de74f1b93ebc888d374acb1', 'precision_at_k': 0.0019334049409237381, 'recall_at_k': 0.00966702470461869, 'ndcg_at_k': 0.005733920679757089}, 'content_based': {'run_id': 'ba94d03d25284238ace61259bb3ce0d9', 'precision_at_k': 0.0009667024704618691, 'recall_at_k': 0.004833512352309345, 'ndcg_at_k': 0.003627358956423823}, 'inference_artifact': 'C:\\\\Users\\\\mrudh\\\\BITS WILP\\\\Assignments\\\\Sem 2\\\\DMML\\\\recomart-data-pipeline\\\\artifacts\\\\recommendations.json'}", "pipeline_step": "TRAIN_COMPLETE"}
+{"timestamp": "2026-07-20T10:52:58.277107+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "[Prefect Task] Generating data lineage manifest..."}
+{"timestamp": "2026-07-20T10:52:58.279107+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Compiling project data lineage graph map...", "pipeline_step": "LINEAGE_MAP"}
+{"timestamp": "2026-07-20T10:52:58.284116+00:00", "level": "INFO", "logger": "recomart_pipeline", "message": "Prefect orchestration flow execution completed smoothly.", "pipeline_step": "DAG_SUCCESS"}

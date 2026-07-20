@@ -77,42 +77,13 @@ The proposed pipeline generates several intermediate and final outputs throughou
 
 ## 5. Recommendation Pipeline
 
-The proposed architecture follows a modular pipeline in which each stage has a single responsibility.
+The proposed architecture follows a modular pipeline in which each stage has a single responsibility. The modular design improves maintainability, traceability, and scalability while ensuring that downstream machine learning components always operate on validated and reproducible datasets.
 
-```
-Data Sources
-      │
-      ▼
-Data Collection & Ingestion
-      │
-      ▼
-Raw Data Lake
-      │
-      ▼
-Data Validation
-      │
-      ▼
-Data Preparation
-      │
-      ▼
-Feature Engineering
-      │
-      ▼
-SQLite Data Warehouse
-      │
-      ▼
-Feature Store
-      │
-      ▼
-Model Training & Evaluation
-      │
-      ▼
-MLflow + Lineage + Reports
-```
+![Draw.io Architecture Diagram 1](high_level_architecture.drawio.png)
 
-The modular design improves maintainability, traceability, and scalability while ensuring that downstream machine learning components always operate on validated and reproducible datasets.
 
-![Draw.io Architecture Diagram](architecture.drawio.png)
+![Draw.io Architecture Diagram 2](task_level_architecture.drawio.png)
+
 
 
 ---
