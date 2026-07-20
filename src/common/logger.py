@@ -28,7 +28,7 @@ class JSONFormatter(logging.Formatter):
 
 def _setup_logger():
     """Initializes and returns the singleton logger instance."""
-    logger_name = "data_ingestion"
+    logger_name = "recomart_pipeline"
     _logger = logging.getLogger(logger_name)
     _logger.setLevel(logging.INFO)
     
