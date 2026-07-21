@@ -90,6 +90,93 @@ class RecommendationPipelineTrainer:
             "inference_artifact": str(self.artifact_path),
         }
         logger.info(f"Model training complete: {result}", extra={"pipeline_step": "TRAIN_COMPLETE"})
+        evaluation_summary = {
+            "evaluation_strategy": "Per-user holdout",
+            "top_k": top_k,
+            "train_interactions": len(train),
+            "test_interactions": len(test),
+            "n_test_users": test["user_id"].nunique(),
+            "models": [
+                {
+                    "model": "Popularity",
+                    "precision_at_5": pop_metrics["precision_at_k"],
+                    "recall_at_5": pop_metrics["recall_at_k"],
+                    "ndcg_at_5": pop_metrics["ndcg_at_k"],
+                },
+                {
+                    "model": "ContentBased-TFIDF",
+                    "precision_at_5": content_metrics["precision_at_k"],
+                    "recall_at_5": content_metrics["recall_at_k"],
+                    "ndcg_at_5": content_metrics["ndcg_at_k"],
+                }
+            ]
+        }
+        artifact_dir = self.project_root / "artifacts"
+        artifact_dir.mkdir(exist_ok=True)
+
+        # JSON
+        json_path = artifact_dir / "model_evaluation.json"
+        json_path.write_text(
+            json.dumps(evaluation_summary, indent=2),
+            encoding="utf-8"
+        )
+
+        # CSV
+        csv_path = artifact_dir / "model_evaluation.csv"
+        pd.DataFrame(evaluation_summary["models"]).to_csv(csv_path, index=False)
+        
+        # Markdown
+        md_path = artifact_dir / "model_evaluation.md"
+
+        lines = [
+            "# Recommendation Model Evaluation",
+            "",
+            "## Evaluation Summary",
+            "",
+            "| Property | Value |",
+            "|----------|-------|",
+            f"| Evaluation Strategy | {evaluation_summary['evaluation_strategy']} |",
+            f"| Top-K | {evaluation_summary['top_k']} |",
+            f"| Training Interactions | {evaluation_summary['train_interactions']} |",
+            f"| Test Interactions | {evaluation_summary['test_interactions']} |",
+            f"| Test Users | {evaluation_summary['n_test_users']} |",
+            "",
+            "## Evaluation Metrics",
+            "",
+            "| Model | Precision@5 | Recall@5 | NDCG@5 |",
+            "|------|-------------:|----------:|--------:|",
+        ]
+
+        # Iterate over the list of models, not the dictionary itself
+        for row in evaluation_summary["models"]:
+            lines.append(
+                f"| {row['model']} | "
+                f"{row['precision_at_5']:.6f} | "
+                f"{row['recall_at_5']:.6f} | "
+                f"{row['ndcg_at_5']:.6f} |"
+            )
+
+        lines.extend([
+            "",
+            "### Evaluation Strategy",
+            "",
+            "The recommendation models were evaluated using a per-user holdout evaluation strategy.",
+            "For each eligible user, the latest interaction was reserved for testing.",
+            "",
+            "The following ranking metrics were computed:",
+            "",
+            "- Precision@5",
+            "- Recall@5",
+            "- NDCG@5",
+        ])
+
+        md_path.write_text("\n".join(lines), encoding="utf-8")
+
+        logger.info(
+            f"Model evaluation reports generated at: {artifact_dir}",
+            extra={"pipeline_step": "TRAIN_REPORT_GENERATED"}
+        )
+
         return result
 
 
